@@ -1,4 +1,58 @@
+body {
+    background-color: black;
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: yellow;
+}
+
+a {
+    color: yellow;
+    padding: 50px;
+    font-size: 18px;
+    text-decoration: none;
+    margin-top: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 25px;
+}
+
+button {
+    background-color: rgba(61, 61, 61, 0.632);
+    color: yellow;
+    padding: 30px;
+    font-size: 20px;
+    font-weight: bolder;
+    font-family: monospace;
+}
+
+select {
+    background-color: black;
+    color: yellow;
+}
+
+.welcome {
+    text-align: center;
+}
+
 .img {
     max-height: 400px;
     max-width: 400px;
 }
+
+.planets {
+    text-align: center;
+}
+
+.label {
+    font-size: 20px;
+}
+
+#planets-dropdown {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
