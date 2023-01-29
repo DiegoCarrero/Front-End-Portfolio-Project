@@ -28,45 +28,66 @@ fetch(API_URL)
                 option.innerText = morePlanets.results[i].name;
                 swPlanets.append(option);
             }
-            console.log(planetsArray)
         })
         .catch(console.error);
     })
 .catch(console.error);
 
 // Selects the planet image display
-const imgDisplay = document.getElementById('planet-img');
-// Creates a variable for the selected planet
-let currentPlanet;
+// const imgDisplay = document.getElementById('planet-img');
+
 // What occurs when a planet is selected from the dropdown
 swPlanets.addEventListener('change', (event) => {
-    imgDisplay.innerHTML = '';
-    getImg(planetsArray[event.target.value].name)
-    // for (let i = 0; i < planetsArray.length; i++) {
-    //     if (event.target.value == i) {
-    //         currentPlanet = planetsArray[i];
-    //         getImg(currentPlanet.name);
-    //     }
-    // }
-    console.log(planetsArray)
-    
+    const selectedValue = event.target.value;
+    getImgs(selectedValue);
+    getInfo(selectedValue);
 })
 
 // Displays the appropriate image according to the selected planet
-function getImg(planetName) {
-    for (const planet of planetsArray) {
-        if (planet.name == planetName) {
-            const imgDiv = document.getElementById('planet-img');
-            const planetImg = document.createElement('img');
-            planetImg.src = `./images/${planetName}.webp`;
-            planetImg.alt = `Image of ${planetName}`;
-            imgDiv.append(planetImg);
-        }
-    }
+function getImgs(targetValue) {
+    const planetName = planetsArray[targetValue].name;
+    const imgDiv = document.getElementById('planet-img');
+    const planetImg = document.createElement('img');
+    // Clears image display and appends image of selected planet
+    imgDiv.innerHTML = '';
+    planetImg.src = `./images/${planetName}.webp`;
+    planetImg.alt = `Image of ${planetName}`;
+    planetImg.classList.add('img');
+    imgDiv.append(planetImg);
 }
 
-// Fetches information about the selected planet
-// function getInfo(planet) {
+// Displays information about the selected planet
+function getInfo(targetValue) {
+    const currentPlanet = planetsArray[targetValue];
+    const planetName = document.getElementById('planet-name');
+    const planetInfo = document.getElementById('planet-info');
 
-// }
+    planetName.innerHTML = '';
+    planetInfo.innerHTML = '';
 
+    planetName.innerHTML = `<strong>${currentPlanet.name}</strong>`;
+
+    const climate = document.createElement('li');
+    climate.innerText = `Climate: ${currentPlanet.climate[0].toUpperCase() + currentPlanet.climate.substr(1)}`;
+    planetInfo.append(climate);
+
+    const terrain = document.createElement('li');
+    terrain.innerText = `Terrain: ${currentPlanet.terrain[0].toUpperCase() + currentPlanet.terrain.substr(1)}`;
+    planetInfo.append(terrain);
+
+    const surfaceWater = document.createElement('li');
+    if (currentPlanet.surface_water == 'unknown') {
+        surfaceWater.innerText = `Percentage of water on the planet's surface: ${currentPlanet.surface_water}`;
+    } else {
+        surfaceWater.innerText = `Percentage of water on the planet's surface: ${currentPlanet.surface_water}%`;
+    }
+    planetInfo.append(surfaceWater);
+
+    const gravity = document.createElement('li');
+    gravity.innerHTML = `Gravity: ${currentPlanet.gravity} <em>g<em/>`;
+    planetInfo.append(gravity);
+
+    const population = document.createElement('li');
+    population.innerText = `Population: ${currentPlanet.population}`;
+    planetInfo.append(population);
+}
