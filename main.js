@@ -21,25 +21,48 @@ fetch(API_URL)
         }
         fetch(planets.next).then(res => res.json()).then((morePlanets) => {
             for (let i = 0; i < morePlanets.results.length; i++) {
-                planetsArray.push(planets.results[i]);
+                planetsArray.push(morePlanets.results[i]);
                 const option = document.createElement('option');
                 option.value = i + 10;
                 option.name = morePlanets.results.name;
                 option.innerText = morePlanets.results[i].name;
                 swPlanets.append(option);
             }
+            console.log(planetsArray)
         })
         .catch(console.error);
     })
 .catch(console.error);
 
+// Selects the planet image display
+const imgDisplay = document.getElementById('planet-img');
+// Creates a variable for the selected planet
+let currentPlanet;
+// What occurs when a planet is selected from the dropdown
+swPlanets.addEventListener('change', (event) => {
+    imgDisplay.innerHTML = '';
+    getImg(planetsArray[event.target.value].name)
+    // for (let i = 0; i < planetsArray.length; i++) {
+    //     if (event.target.value == i) {
+    //         currentPlanet = planetsArray[i];
+    //         getImg(currentPlanet.name);
+    //     }
+    // }
+    console.log(planetsArray)
+    
+})
+
 // Displays the appropriate image according to the selected planet
-function getImg(index) {
-    const imgDiv = document.getElementById('planet-img');
-    const planetImg = document.createElement('img');
-    planetImg.src = 
-    icon.setAttribute('src', './assets/icons8-summer.gif');
-    icon.setAttribute('alt', 'sun');
+function getImg(planetName) {
+    for (const planet of planetsArray) {
+        if (planet.name == planetName) {
+            const imgDiv = document.getElementById('planet-img');
+            const planetImg = document.createElement('img');
+            planetImg.src = `./images/${planetName}.webp`;
+            planetImg.alt = `Image of ${planetName}`;
+            imgDiv.append(planetImg);
+        }
+    }
 }
 
 // Fetches information about the selected planet
