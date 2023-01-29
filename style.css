@@ -43,6 +43,10 @@ select {
     max-width: 400px;
 }
 
+.surface-img {
+    max-width: 800px;
+}
+
 .planets {
     text-align: center;
 }

@@ -54,6 +54,15 @@ function getImgs(targetValue) {
     planetImg.alt = `Image of ${planetName}`;
     planetImg.classList.add('img');
     imgDiv.append(planetImg);
+
+    const surfaceDiv = document.getElementById('surface-img');
+    surfaceDiv.innerHTML = '';
+    const surfaceImage = document.createElement('img');
+    surfaceImage.src = `./images/${planetName}Surface.webp`
+    if (surfaceImage.width > 0) {
+        surfaceImage.classList.add('surface-img');
+        surfaceDiv.append(surfaceImage);
+    }
 }
 
 // Displays information about the selected planet
