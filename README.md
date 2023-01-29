@@ -1,7 +1,7 @@
 # Front-End-Portfolio-Project
 
 ## Star Wars Planets - Your Ideal Home Away From Earth
-This is a web app that allows you to explore some of the planets in the Star Wars universe and helps you choose which one you would like to live in. It uses [SWAPI](https://swapi.co/) as an API endpoint to return information about the selected planets.
+This is a web app that allows you to explore some of the planets in the Star Wars universe and helps you choose which one you would like to live in. It uses [SWAPI](https://swapi.co/) as an API endpoint to return information about the selected planets. Deployed application URL: https://fancy-tiramisu-98dd2d.netlify.app
 
 ## Tech used
 - Vanilla Javascript
